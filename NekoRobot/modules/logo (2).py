@@ -20,7 +20,7 @@ sudo = [6404226395, 5654523936]
 def add(update: Update, context: CallbackContext) -> None:
     
     if update.message.from_user.id not in sudo:
-        update.message.reply_text('Sojaa...')
+        update.message.reply_text('You are not worthy enough👅')
         return
 
     
@@ -38,7 +38,7 @@ def add(update: Update, context: CallbackContext) -> None:
 
     try:
         collection.insert_one({'category': category, 'photo': response.content})
-        update.message.reply_text('Photo added successfully.')
+        update.message.reply_text('Photo added successfully! checkout @logodatabase')
         
         
         with BytesIO(response.content) as photo:
@@ -65,7 +65,7 @@ def logo(update: Update, context: CallbackContext) -> None:
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text('Please choose:', reply_markup=reply_markup)
+    update.message.reply_text('Choose your category!:', reply_markup=reply_markup)
 
 def logobutton(update: Update, context: CallbackContext) -> None:
     querry = update.callback_query
@@ -81,7 +81,7 @@ def logobutton(update: Update, context: CallbackContext) -> None:
     
     message_to_delete = querry.message.message_id
 
-    querry.edit_message_text(text="Wait for some seconds...")
+    querry.edit_message_text(text="uploading the file...")
 
     # Open image and draw text
     img = Image.open(BytesIO(image_data['photo']))
